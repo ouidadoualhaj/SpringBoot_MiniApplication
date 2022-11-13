@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeLeaf.org">
+<head>
+<meta charset="utf-8">
+<title>Products</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">  
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a class="navbar-brand" href="/home">Home</a>
+      <a class="navbar-brand" href="/products">Articles</a>
+      <a class="navbar-brand" href="/clients">Clients <span class="sr-only">(current)</span></a>
+      <a class="navbar-brand" href="/commandes">Commandes</a>
+      <a class="navbar-brand" href="/livraisons">Livraisons</a>
+      <a class="navbar-brand" href="/fournisseurs">Fournisseurs</a>
+      <a class="navbar-brand" href="/societes">Societes</a>
+      <a class="navbar-brand" href="/lignescmd">Lignes_cmd</a>
+      <a class="navbar-brand" href="/lignesliv">Lignes_liv</a>
+    </div>
+  </div>
+</nav>
+<body>
+	<div class="container mt-5">
+		<div class="card">
+			<h1 style="margin-left:30%">liste des lignes de commande</h1>
+			<div class="card-body">
+
+
+				<table class="table">
+					<tr>
+						<th>numero de ligne</th>
+						<th>quantité de commande</th>
+						<th>numero de commande</th>
+						<th>code de produit</th>
+						<th>Action</th>
+					</tr>
+					<tr th:each="LIGNE_CMD:${lignescmd}">
+						<td th:text="${LIGNE_CMD.num_ligne}"></td>
+						<td th:text="${LIGNE_CMD.qte_cmd}"></td>
+						<td th:text="${LIGNE_CMD.commande.num_cmd}"></td>
+						<td th:text="${LIGNE_CMD.article.code_art}"></td>
+						
+						<td><a
+							onclick="javascript:return confirm('Etes vous sur de vouloir supprimer ?')"
+							class="btn btn-danger"
+							th:href="@{deleteLignecmd(id=${LIGNE_CMD.num_ligne}, page=${currentPage},size=${size}, motCle=${motCle})}">Delete
+							</a>
+							
+							<a
+							class="btn btn-info"
+							th:href="@{/lignescmd/edit/{id}(id=${LIGNE_CMD.num_ligne})}">Update
+							</a>
+							
+							</td>
+					</tr>
+
+				</table>
+			</div>
+		</div>
+		<a class="btn btn-secondary" href="/lignescmd/new">Ajouter lignecmd</a>
+	</div>
+</body>
+<style>
+body {
+    background: #444178;
+}
+</style>
+</html>

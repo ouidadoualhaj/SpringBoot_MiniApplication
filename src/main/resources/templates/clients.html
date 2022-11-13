@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeLeaf.org">
+<head>
+<meta charset="utf-8">
+<title>Clients</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">  
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a class="navbar-brand" href="/home">Home</a>
+      <a class="navbar-brand" href="/products">Articles</a>
+      <a class="navbar-brand" href="/clients">Clients</a>
+      <a class="navbar-brand" href="/commandes">Commandes</a>
+      <a class="navbar-brand" href="/livraisons">Livraisons</a>
+      <a class="navbar-brand" href="/fournisseurs">Fournisseurs</a>
+      <a class="navbar-brand" href="/societes">Societes</a>
+      <a class="navbar-brand" href="/lignescmd">Lignes_cmd</a>
+      <a class="navbar-brand" href="/lignesliv">Lignes_liv</a>
+    </div>
+  </div>
+</nav>
+
+<body>
+	<div class="container mt-5">
+		<div class="card">
+			<h1 style="margin-left:35%">liste des clients</h1>
+			<div class="card-body">
+
+
+				<table class="table">
+					<tr>
+						<th>Code Client</th>
+						<th>Nom Client</th>
+						<th>Prenom Client</th>
+						<th>Adresse Client</th>
+						<th>Tele Client</th>
+						<th>ville Client</th>
+						<th>Action</th>
+					</tr>
+					<tr th:each="CLIENT:${listeClients}">
+						<td th:text="${CLIENT.code_cli}"></td>
+						<td th:text="${CLIENT.nom_cli}"></td>
+						<td th:text="${CLIENT.pre_cli}"></td>
+						<td th:text="${CLIENT.adr_cli}"></td>
+						<td th:text="${CLIENT.tel_cli}"></td>
+						<td th:text="${CLIENT.ville_cli}"></td>
+						
+						<td><a
+							onclick="javascript:return confirm('Etes vous sur de vouloir supprimer ?')"
+							class="btn btn-danger"
+							th:href="@{deleteClient(id=${CLIENT.code_cli}, page=${currentPage},size=${size}, motCle=${motCle})}">Delete
+							</a>
+							<a
+							class="btn btn-info"
+							th:href="@{/clients/edit/{id}(id=${CLIENT.code_cli})}">Update
+							</a>
+							
+						</td>
+					</tr>
+
+				</table>
+			</div>
+		</div>
+	<a class="btn btn-secondary" href="/client/new">Ajouter client</a>
+</div>
+	
+</body>
+<style>
+body {
+    background: #444178;
+}
+</style>
+</html>

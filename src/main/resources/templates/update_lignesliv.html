@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeLeaf.org">
+<head>
+<meta charset="utf-8">
+<title>Fournisseurs</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">  
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a class="navbar-brand" href="/home">Home</a>
+      <a class="navbar-brand" href="/products">Articles</a>
+      <a class="navbar-brand" href="/clients">Clients</a>
+      <a class="navbar-brand" href="/commandes">Commandes</a>
+      <a class="navbar-brand" href="/livraisons">Livraisons</a>
+      <a class="navbar-brand" href="/fournisseurs">Fournisseurs</a>
+      <a class="navbar-brand" href="/societes">Societes</a>
+      <a class="navbar-brand" href="/lignescmd">Lignes_cmd</a>
+      <a class="navbar-brand" href="/lignesliv">Lignes_liv</a>
+    </div>
+  </div>
+</nav>
+
+<body>
+<br>
+<br>
+
+	<div class = "container-fluid">
+		<div class = "row">
+			<div class ="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
+				<h1 class = "text-center text-info"> Update New ligneliv </h1>
+				<div class = "card-body">
+					<form th:action="@{/lignesliv/{id} (id=${lignesliv.num_ligne})}" th:object = "${lignesliv}" method="POST">
+					
+						
+						<div class ="form-group">
+							<label> N°Liv </label>
+							<input
+							type = "text"
+							name = "num_ligne"
+							th:field = "*{num_ligne}"
+							class = "form-control"
+							
+							/>
+						</div>
+						<div class ="form-group">
+							<label> qte de livraison </label>
+							<input
+							type = "text"
+							name = "qte_liv"
+							th:field = "*{qte_liv}"
+							class = "form-control"
+							
+							/>
+						</div>
+						<div class ="form-group">
+							<label> code article </label>
+							<input
+							type = "text"
+							name = "code_art"
+							th:field = "*{article.code_art}"
+							class = "form-control"
+							
+							/>
+							<div class ="form-group">
+							<label> code livraison </label>
+							<input
+							type = "text"
+							name = "livraison"
+							th:field = "*{livraison.num_liv}"
+							class = "form-control"
+							
+							/>
+						</div>
+						
+						
+						
+						
+						<div class = "box-footer">
+							<button type="submit" class = "btn btn-primary">
+								Submit
+							</button>
+						</div>
+					</form>
+				
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+<style>
+body {
+    background: #444178;
+}
+</style>
+</html>

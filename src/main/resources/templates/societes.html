@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeLeaf.org">
+<head>
+<meta charset="utf-8">
+<title>Products</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">  
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a class="navbar-brand" href="/home">Home</a>
+      <a class="navbar-brand" href="/products">Articles</a>
+      <a class="navbar-brand" href="/clients">Clients <span class="sr-only">(current)</span></a>
+      <a class="navbar-brand" href="/commandes">Commandes</a>
+      <a class="navbar-brand" href="/livraisons">Livraisons</a>
+      <a class="navbar-brand" href="/fournisseurs">Fournisseurs</a>
+      <a class="navbar-brand" href="/societes">Societes</a>
+      <a class="navbar-brand" href="/lignescmd">Lignes_cmd</a>
+      <a class="navbar-brand" href="/lignesliv">Lignes_liv</a>
+    </div>
+  </div>
+</nav>
+<body>
+	<div class="container mt-5">
+		<div class="card">
+			<h1 style="margin-left:35%">liste des societes</h1>
+			<div class="card-body">
+				<table class="table">
+					<tr>
+						<th>Code societe</th>
+						<th>Nom societe</th>
+						<th>Tel societe</th>
+						<th>Fax societe</th>
+						<th>Ville societe</th>
+						<th>code fournisseur</th>
+						<th>Action</th>
+					</tr>
+					<tr th:each="SOCIETE:${listeSocietes}">
+						<td th:text="${SOCIETE.code_ste}"></td>
+						<td th:text="${SOCIETE.nom_ste}"></td>
+						<td th:text="${SOCIETE.tel_ste}"></td>
+						<td th:text="${SOCIETE.fax_ste}"></td>
+						<td th:text="${SOCIETE.ville_ste}"></td>
+						<td th:text="${SOCIETE.fournisseur.code_four}"></td>
+						<td><a
+							onclick="javascript:return confirm('Etes vous sur de vouloir supprimer ?')"
+							class="btn btn-danger"
+							th:href="@{deleteSociete(id=${SOCIETE.code_ste}, page=${currentPage},size=${size}, motCle=${motCle})}">Delete
+							</a>
+							<a
+							class="btn btn-info"
+							th:href="@{/societes/edit/{id}(id=${SOCIETE.code_ste})}">Update
+							</a>
+							</td>
+					</tr>
+
+				</table>
+	
+
+			</div>
+		</div>
+		      <a class="btn btn-secondary" href="/societe/new">Ajouter societe</a>
+		
+	</div>
+</body>
+<style>
+body {
+    background: #444178;
+}
+</style>
+</html>
